@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Tests of some browser features...
+        </title>
+
+        <script src="http://code.jquery.com/jquery-1.9.0rc1.js"></script>
+        <script type="text/javascript">
+        var isSessionStorage = false;
+
+        function isStorageSupported()
+        {
+            return (typeof(Storage) !== "undefined");
+        }
+
+        function initStorage()
+        {
+            if(!isStorageSupported())
+            {
+                alert("Your browser do not support local storage feature!");
+            }
+            else
+            {
+                isSessionStorage = confirm("Do you want use session storage now?");
+
+                if(!isSessionStorage)
+                {
+                    $("#storageType").text("Local Storage");
+
+                    alert(localStorage.visitsCnt);
+
+                    if(localStorage.visitsCnt)
+                    {
+                        localStorage.visitsCnt = 0;
+                    }
+                    else
+                    {
+                        localStorage.visitsCnt = localStorage.visitsCnt + 1;
+                    }
+
+                    $("#visitsCnt").text(localStorage.visitsCnt);
+                }
+                else
+                {
+                    $("#storageType").text("Session Storage");
+                }
+            }
+        }
+
+        </script>
+    </head>
+
+    <body onload="initStorage();">
+        <p id="storageType" style="color: #800"></p>
+        <p>
+            Visits counter: <span id="visitsCnt"></span>
+        </p>        
+    </body>
+</html>
