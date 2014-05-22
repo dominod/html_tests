@@ -22,21 +22,21 @@
             }
             else
             {
-                isSessionStorage = confirm("Do you want use session storage now?");
+                isSessionStorage = confirm("Do you want to use session storage now?");
 
                 if(!isSessionStorage)
                 {
                     $("#storageType").text("Local Storage");
 
-                    alert(localStorage.visitsCnt);
+                    // alert(localStorage.getItem("visitsCnt"));
 
-                    if(localStorage.visitsCnt)
+                    if(!localStorage.getItem("visitsCnt"))
                     {
-                        localStorage.visitsCnt = 0;
+                        localStorage.visitsCnt = 1;
                     }
                     else
                     {
-                        localStorage.visitsCnt = localStorage.visitsCnt + 1;
+                        localStorage.visitsCnt = new Number(localStorage.visitsCnt) + 1;
                     }
 
                     $("#visitsCnt").text(localStorage.visitsCnt);
@@ -44,6 +44,19 @@
                 else
                 {
                     $("#storageType").text("Session Storage");
+
+                    // alert(sessionStorage.getItem("visitsCnt"));
+
+                    if(!sessionStorage.getItem("visitsCnt"))
+                    {
+                        sessionStorage.visitsCnt = 1;
+                    }
+                    else
+                    {
+                        sessionStorage.visitsCnt = new Number(sessionStorage.visitsCnt) + 1;
+                    }
+
+                    $("#visitsCnt").text(sessionStorage.visitsCnt);
                 }
             }
         }
